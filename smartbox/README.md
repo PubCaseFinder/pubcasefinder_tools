@@ -4,11 +4,12 @@
 
 ## デモについて
 
-### 起動手順
+以下でプロパティやオプションを確認できます。
+https://pubcasefinder.github.io/pubcasefinder_tools/smartbox/
 
-1. demo/js/main.js で smartBox 関数を呼び出し、Input 要素の ID、TSV ファイルのパス、オプションを引数として渡しています。（確認するだけであれば、デモ用のファイルをそのまま使用してください。）
+### ローカルでの使用手順
 
-以下のコマンドをターミナルで入力してディレクトリを移動してください。
+1. 以下のコマンドをターミナルで入力してディレクトリを移動してください。
 
 ```sh
 cd smartbox
@@ -33,51 +34,63 @@ npm install
 node demo/js/server.js
 ```
 
-3. VSCode の拡張機能である Live Server を起動してください。その後、http://127.0.0.1:5500/smartbox/demo/ を開いてください。
+3. VSCode の拡張機能である Live Server を起動してください。その後、http://127.0.0.1:5500/smartbox/ を開いてください。
 
 ## 他プロジェクトでの使い方
 
-最小限の構成として、デモファイルのような html ファイル、css ファイル、js ファイル、tsv ファイルを用意してください。（server.js はデモ用なのでなくても問題ありません。）
-
-### HTML
-
-html ファイルに以下のようなコードを記述し、input 要素は div 要素（class="smart-box-container"）で囲むようにしてください。また、id は任意のものを指定してください。
+デモページで表示される以下のようなコードをhtmlファイルに貼り付けてください。
 
 ```html
-<div class="smart-box-container">
-  <input
-    type="text"
-    id="inputBoxID"
-    class="smart-box-input"
-    autocomplete="off"
-    placeholder="Search..."
-  />
-</div>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/PubCaseFinder/pubcasefinder_tools@main/smartbox/style.css">
+
+<smart-box 
+  smartbox-id="12"
+  data-path="https://raw.githubusercontent.com/PubCaseFinder/pubcasefinder_tools/main/smartbox/tsv/nando_sample.tsv"
+  placeholder="Search..."
+  options='{"include_no_match":false}'
+></smart-box>
+
+<script type="module" src="https://cdn.jsdelivr.net/gh/PubCaseFinder/pubcasefinder_tools@main/smartbox/smartbox.js"></script>
+
+<script type="module">
+  document.addEventListener('selectedSmartBoxLabel', e => console.log(e.detail.smartBoxId, e.detail.labelInfo));
+</script>
 ```
 
-### CSS
+### インターネットに繋がらないようなプロジェクトの場合は、smartbox.js と style.css をコピーしてプロジェクトのディレクトリに配置してください。
+
+
+#### HTML
+
+html ファイルに以下のようなコードを記述してください。また、id は任意のものを指定してください。
+
+```html
+<link rel="stylesheet" href="your_project_directory/style.css">
+
+<smart-box 
+  smart-box-id="sample"
+  data-path="https://raw.githubusercontent.com/PubCaseFinder/pubcasefinder_tools/main/smartbox/tsv/nando_sample.tsv"
+  placeholder="Search..."
+  options='{"include_no_match":false}'
+></smart-box>
+
+<script type="module" src="your_project_directory/smartbox.js"></script>
+```
+
+#### CSS
 
 style.css に含まれるコードをコピーしてご利用のプロジェクトの CSS ファイルに追加してください。
 css は scss で管理しています。Smart Text Box 共通部分に関わる修正をする場合は scss 自体も変更・更新してください。
 
-### JavaScript
+#### JavaScript
 
 smartbox.js ファイルをコピーして追加してください。利用したい js ファイルで以下のように呼び出してください。パスは適宜変更してください。
 
 ```javascript
-// smartbox.js のインポート
-import { smartBox } from './smartbox.js';
-
-// 関数の呼び出し
-smartBox('inputBoxID', 'path/to/keywords.tsv');
-
 // カスタムイベントのリスナー（インプットボックスのIDと選択したラベル情報のオブジェクトを取得し、Consoleに表示する例）
-document.addEventListener('selectedLabel', function (event) {
-  const selectedInputBox = event.detail.inputBoxId;
-  const selectedItem = event.detail.labelInfo;
-  console.log(selectedInputBox);
-  console.log(selectedItem);
-});
+<script type="module">
+  document.addEventListener('selectedSmartBoxLabel', e => console.log(e.detail.smartBoxId, e.detail.labelInfo));
+</script>
 ```
 
 ### TSV
@@ -140,46 +153,9 @@ max_results (number): サジェストボックスに表示する最大の候補�
 
 #### 使用例
 
-以下のように、smartBox 関数を呼び出して使用します。
+デモページでの出力を参考にオプションを追加してください。
 
-1. ローカルデータだけ使用する場合
 
-```javascript
-smartBox('inputBoxID', 'path/to/keywords.tsv');
-```
-
-2. もしかして検索を使用（ローカルデータがヒットしないとき）する場合
-
-```javascript
-smartBox('inputBoxID', 'path/to/keywords.tsv', {
-  api_url: 'https://api.example.com/keywords',
-});
-```
-
-3. キーワード自体の選択欄を表示する場合
-
-```javascript
-smartBox('inputBoxID', 'path/to/keywords.tsv', {
-  include_no_match: true,
-});
-```
-
-4. もしかして検索とキーワード自体の選択欄を表示する場合
-
-```javascript
-smartBox('inputBoxID', 'path/to/keywords.tsv', {
-  api_url: 'https://api.example.com/keywords',
-  include_no_match: true,
-});
-```
-
-5. サジェストボックスに表示する最大の候補数を指定する場合（最大が 5 件の場合）
-
-```javascript
-smartBox('inputBoxID', 'path/to/keywords.tsv', {
-  max_results: 5,
-});
-```
 
 #### もしかして検索（API）のレスポンス
 
