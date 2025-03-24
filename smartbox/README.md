@@ -1,4 +1,4 @@
-# SMART BOX
+# SMARTBOX
 
 この JavaScript モジュールは、入力ボックスに対してキーワードの候補をサジェストする機能を提供します。ローカルの TSV ファイルから取得したデータや、必要に応じて外部 API から取得したデータに基づいてキーワードをサジェストします。サジェストされたキーワードは、入力ボックスの下にドロップダウンで表示され、ユーザーが選択できるようになります。
 
@@ -11,7 +11,7 @@
 以下のコマンドをターミナルで入力してディレクトリを移動してください。
 
 ```sh
-cd smart_box
+cd smartbox
 ```
 
 #### smartBox の引数
@@ -33,7 +33,7 @@ npm install
 node demo/js/server.js
 ```
 
-3. VSCode の拡張機能である Live Server を起動してください。その後、http://127.0.0.1:5500/smart_box/demo/ を開いてください。
+3. VSCode の拡張機能である Live Server を起動してください。その後、http://127.0.0.1:5500/smartbox/demo/ を開いてください。
 
 ## 他プロジェクトでの使い方
 
@@ -62,11 +62,11 @@ css は scss で管理しています。Smart Text Box 共通部分に関わる�
 
 ### JavaScript
 
-smart_box.js ファイルをコピーして追加してください。利用したい js ファイルで以下のように呼び出してください。パスは適宜変更してください。
+smartbox.js ファイルをコピーして追加してください。利用したい js ファイルで以下のように呼び出してください。パスは適宜変更してください。
 
 ```javascript
-// smart_box.js のインポート
-import { smartBox } from './smart_box.js';
+// smartbox.js のインポート
+import { smartBox } from './smartbox.js';
 
 // 関数の呼び出し
 smartBox('inputBoxID', 'path/to/keywords.tsv');
