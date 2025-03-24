@@ -4,7 +4,7 @@
 
 ## デモについて
 
-以下でプロパティやオプションを確認できます。
+以下URLでプロパティやオプションを確認できます。
 https://pubcasefinder.github.io/pubcasefinder_tools/smartbox/
 
 ### ローカルでの使用手順
@@ -17,12 +17,12 @@ cd smartbox
 
 #### smartBox の引数
 
-- `input_box_id`: 入力ボックス要素の ID。必須です。
-- `data_path`: TSV ファイルのパス。必須です。
-- `[options={}]`: 追加設定を指定するオプションオブジェクト。省略可能です。
-  - `[options.api_url='']`: もしかして検索をするための API の URL（オプション）。
-  - `[options.include_no_match=false]`: キーワードが見つからない場合にキーワード自体の選択欄を含めるかどうか（オプション）。
-  - `[options.max_results]`: サジェストボックスに表示する最大の候補数（オプション）。
+- `smart-box-id`: 入力ボックス要素のID。必須です。
+- `data-path`: TSVファイルのURL。必須です。
+- `placeholder`: 入力ボックスのプレースホルダーテキスト。省略可能です。
+- `options`: 追加設定を指定するJSONオブジェクト。省略可能です。
+  - `include_no_match`: キーワードが見つからない場合にキーワード自体の選択欄を含めるかどうか（デフォルト: false）
+  - `max_results`: サジェストボックスに表示する最大の候補数
 
 2. もしかして検索（API）をローカルで試したい場合は、API サーバーを起動してください。デモ用に作成した（server.js）は Node.js と Express を使用しています。簡易的な API であるため、実際のプロジェクトで使用する場合は適切な API を用意してください。
 
