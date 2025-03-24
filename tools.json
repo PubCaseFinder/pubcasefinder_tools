@@ -1,0 +1,14 @@
+{
+  "tools": [
+    {
+      "id": "smartbox",
+      "displayName": "SmartBox",
+      "description": "Click to view demo"
+    },
+    {
+      "id": "demo_box",
+      "displayName": "Demo Tool",
+      "description": "Click to view demo"
+    }
+  ]
+}
