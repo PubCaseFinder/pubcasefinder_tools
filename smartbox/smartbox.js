@@ -300,7 +300,7 @@ function smartBox(smart_box_id, data_path, options = {}) {
    * @returns {string} - The string with special characters processed
    */
   function cleanSpecialChars(str) {
-    return str.replace(/[\[\]\(\)\{\}<>]/g, '').trim();
+    return str.replace(/[\[\]\(\)\{\}<>']/g, '').trim();
   }
 
   /**
@@ -623,7 +623,15 @@ function smartBox(smart_box_id, data_path, options = {}) {
    * @returns {string} - The normalized string.
    */
   function normalizeString(str) {
-    return str.normalize('NFKC').toLowerCase();
+    let normalized = str.normalize('NFKC').toLowerCase();
+    
+    normalized = normalized.replace(/(\w+)'s\b/g, '$1s');
+    
+    normalized = normalized.replace(/(\w+)'\b/g, '$1');
+    
+    normalized = normalized.replace(/-/g, ' ');
+    
+    return normalized;
   }
 
   /**
