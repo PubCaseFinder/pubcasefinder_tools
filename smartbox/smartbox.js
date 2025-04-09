@@ -258,7 +258,8 @@ function smartBox(smart_box_id, data_path, options = {}) {
 
     currentKeywords = searchValue
       .split(/\s+/)
-      .filter((keyword) => keyword !== '');
+      .filter((keyword) => keyword !== '')
+      .map(cleanSpecialChars);
 
     if (isNumericInput) {
       localResults = searchInLocalData(diseases, currentKeywords, true);
@@ -291,6 +292,15 @@ function smartBox(smart_box_id, data_path, options = {}) {
         displayResults(localResults, false, false, max_results);
       }
     }
+  }
+
+  /**
+   * Function to remove or replace special characters
+   * @param {string} str - The string to process
+   * @returns {string} - The string with special characters processed
+   */
+  function cleanSpecialChars(str) {
+    return str.replace(/[\[\]\(\)\{\}<>']/g, '').trim();
   }
 
   /**
@@ -554,6 +564,11 @@ function smartBox(smart_box_id, data_path, options = {}) {
             ...restDiseaseInfo,
             keyword: originalInputValue,
           };
+          
+          const lang = document.documentElement.lang;
+          const isEng = isEnglish(originalInputValue);
+          const selectedLabel = isEng ? diseaseInfo.label_en : diseaseInfo.label_ja;
+          inputElement.value = selectedLabel;
         }
 
         const customEvent = new CustomEvent('selectedSmartBoxLabel', {
@@ -608,7 +623,15 @@ function smartBox(smart_box_id, data_path, options = {}) {
    * @returns {string} - The normalized string.
    */
   function normalizeString(str) {
-    return str.normalize('NFKC').toLowerCase();
+    let normalized = str.normalize('NFKC').toLowerCase();
+    
+    normalized = normalized.replace(/(\w+)'s\b/g, '$1s');
+    
+    normalized = normalized.replace(/(\w+)'\b/g, '$1');
+    
+    normalized = normalized.replace(/-/g, ' ');
+    
+    return normalized;
   }
 
   /**
@@ -624,8 +647,9 @@ function smartBox(smart_box_id, data_path, options = {}) {
       return lang === 'en';
     }
 
+    const cleanedStr = cleanSpecialChars(str);
     const englishPattern = /^[A-Za-z0-9\s:]+$/;
-    return englishPattern.test(normalizeString(str));
+    return englishPattern.test(normalizeString(cleanedStr));
   }
 
   /**
@@ -657,7 +681,7 @@ function smartBox(smart_box_id, data_path, options = {}) {
         let bestFieldScore = 0;
         for (const field of fields) {
           if (!field) continue;
-          const normalizedField = normalizeString(field);
+          const normalizedField = normalizeString(cleanSpecialChars(field));
           if (normalizedField.includes(lowerKeyword)) {
             const sim = calculateSimilarity(normalizedField, lowerKeyword);
             bestFieldScore = sim;
