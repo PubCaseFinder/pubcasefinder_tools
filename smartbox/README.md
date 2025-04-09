@@ -4,7 +4,7 @@
 
 ## デモについて
 
-以下URLでプロパティやオプションを確認できます。
+以下 URL でプロパティやオプションを確認できます。
 https://pubcasefinder.github.io/pubcasefinder_tools/smartbox/
 
 ### ローカルでの使用手順
@@ -17,10 +17,10 @@ cd smartbox
 
 #### smartBox の引数
 
-- `smart-box-id`: 入力ボックス要素のID。必須です。
-- `data-path`: TSVファイルのURL。必須です。
+- `smart-box-id`: 入力ボックス要素の ID。必須です。
+- `data-path`: TSV ファイルの URL。必須です。
 - `placeholder`: 入力ボックスのプレースホルダーテキスト。省略可能です。
-- `options`: 追加設定を指定するJSONオブジェクト。省略可能です。
+- `options`: 追加設定を指定する JSON オブジェクト。省略可能です。
   - `include_no_match`: キーワードが見つからない場合にキーワード自体の選択欄を含めるかどうか（デフォルト: false）
   - `max_results`: サジェストボックスに表示する最大の候補数
 
@@ -38,38 +38,45 @@ node demo/js/server.js
 
 ## 他プロジェクトでの使い方
 
-デモページで表示される以下のようなコードをhtmlファイルに貼り付けてください。
+デモページで表示される以下のようなコードを html ファイルに貼り付けてください。
 
 ```html
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/PubCaseFinder/pubcasefinder_tools@main/smartbox/style.css">
+<link
+  rel="stylesheet"
+  href="https://cdn.jsdelivr.net/gh/pubCaseFinder/pubcasefinder_tools@main/smartbox/style.css"
+/>
 
-<smart-box 
+<smart-box
   smartbox-id="12"
-  data-path="https://raw.githubusercontent.com/PubCaseFinder/pubcasefinder_tools/main/smartbox/tsv/nando_sample.tsv"
+  data-path="https://raw.githubusercontent.com/pubCaseFinder/pubcasefinder_tools/main/smartbox/tsv/nando_sample.tsv"
   placeholder="Search..."
   options='{"include_no_match":false}'
 ></smart-box>
 
-<script type="module" src="https://cdn.jsdelivr.net/gh/PubCaseFinder/pubcasefinder_tools@main/smartbox/smartbox.js"></script>
+<script
+  type="module"
+  src="https://cdn.jsdelivr.net/gh/pubCaseFinder/pubcasefinder_tools@main/smartbox/smartbox.js"
+></script>
 
 <script type="module">
-  document.addEventListener('selectedSmartBoxLabel', e => console.log(e.detail.smartBoxId, e.detail.labelInfo));
+  document.addEventListener('selectedSmartBoxLabel', (e) =>
+    console.log(e.detail.smartBoxId, e.detail.labelInfo)
+  );
 </script>
 ```
 
 ### インターネットに繋がらないようなプロジェクトの場合は、smartbox.js と style.css をコピーしてプロジェクトのディレクトリに配置してください。
-
 
 #### HTML
 
 html ファイルに以下のようなコードを記述してください。また、id は任意のものを指定してください。
 
 ```html
-<link rel="stylesheet" href="your_project_directory/style.css">
+<link rel="stylesheet" href="your_project_directory/style.css" />
 
-<smart-box 
+<smart-box
   smart-box-id="sample"
-  data-path="https://raw.githubusercontent.com/PubCaseFinder/pubcasefinder_tools/main/smartbox/tsv/nando_sample.tsv"
+  data-path="https://raw.githubusercontent.com/pubCaseFinder/pubcasefinder_tools/main/smartbox/tsv/nando_sample.tsv"
   placeholder="Search..."
   options='{"include_no_match":false}'
 ></smart-box>
@@ -89,7 +96,8 @@ smartbox.js ファイルをコピーして追加してください。利用し�
 ```javascript
 // カスタムイベントのリスナー（インプットボックスのIDと選択したラベル情報のオブジェクトを取得し、Consoleに表示する例）
 <script type="module">
-  document.addEventListener('selectedSmartBoxLabel', e => console.log(e.detail.smartBoxId, e.detail.labelInfo));
+  document.addEventListener('selectedSmartBoxLabel', e =>
+  console.log(e.detail.smartBoxId, e.detail.labelInfo));
 </script>
 ```
 
@@ -101,7 +109,7 @@ TSV ファイルは以下のような構成にしてください。
 id label_en synonym_en label_ja synonym_ja
 ```
 
-## smart_box.js の詳細
+## smartbox.js の詳細
 
 ### 概要
 
@@ -154,8 +162,6 @@ max_results (number): サジェストボックスに表示する最大の候補�
 #### 使用例
 
 デモページでの出力を参考にオプションを追加してください。
-
-
 
 #### もしかして検索（API）のレスポンス
 
