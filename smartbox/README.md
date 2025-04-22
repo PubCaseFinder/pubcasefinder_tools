@@ -43,19 +43,19 @@ node demo/js/server.js
 ```html
 <link
   rel="stylesheet"
-  href="https://cdn.jsdelivr.net/gh/pubCaseFinder/pubcasefinder_tools@main/smartbox/style.css"
+  href="https://cdn.jsdelivr.net/gh/PubCaseFinder/pubcasefinder_tools@main/smartbox/style.css"
 />
 
 <smart-box
   smartbox-id="12"
-  data-path="https://raw.githubusercontent.com/pubCaseFinder/pubcasefinder_tools/main/smartbox/tsv/nando_sample.tsv"
+  data-path="https://raw.githubusercontent.com/PubCaseFinder/pubcasefinder_tools/main/smartbox/tsv/nando_sample.tsv"
   placeholder="Search..."
   options='{"include_no_match":false}'
 ></smart-box>
 
 <script
   type="module"
-  src="https://cdn.jsdelivr.net/gh/pubCaseFinder/pubcasefinder_tools@main/smartbox/smartbox.js"
+  src="https://cdn.jsdelivr.net/gh/PubCaseFinder/pubcasefinder_tools@main/smartbox/smartbox.js"
 ></script>
 
 <script type="module">
@@ -76,7 +76,7 @@ html ファイルに以下のようなコードを記述してください。ま
 
 <smart-box
   smart-box-id="sample"
-  data-path="https://raw.githubusercontent.com/pubCaseFinder/pubcasefinder_tools/main/smartbox/tsv/nando_sample.tsv"
+  data-path="https://raw.githubusercontent.com/PubCaseFinder/pubcasefinder_tools/main/smartbox/tsv/nando_sample.tsv"
   placeholder="Search..."
   options='{"include_no_match":false}'
 ></smart-box>

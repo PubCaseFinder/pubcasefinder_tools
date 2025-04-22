@@ -237,15 +237,15 @@ class SmartBoxDemo {
       switch (dataSource) {
         case 'NANDO':
           this.currentConfig.dataPath =
-            'https://raw.githubusercontent.com/pubCaseFinder/pubcasefinder_tools/main/smartbox/tsv/nando_sample.tsv';
+            'https://raw.githubusercontent.com/PubCaseFinder/pubcasefinder_tools/main/smartbox/tsv/nando_sample.tsv';
           break;
         case 'OMIM/Orphanet':
           this.currentConfig.dataPath =
-            'https://raw.githubusercontent.com/pubCaseFinder/pubcasefinder_tools/main/smartbox/tsv/mondo_sample.tsv';
+            'https://raw.githubusercontent.com/PubCaseFinder/pubcasefinder_tools/main/smartbox/tsv/mondo_sample.tsv';
           break;
         case 'ICD-10':
           this.currentConfig.dataPath =
-            'https://raw.githubusercontent.com/pubCaseFinder/pubcasefinder_tools/main/smartbox/tsv/icd10_sample.tsv';
+            'https://raw.githubusercontent.com/PubCaseFinder/pubcasefinder_tools/main/smartbox/tsv/icd10_sample.tsv';
           break;
         default:
           this.currentConfig.dataPath = '';
@@ -487,7 +487,7 @@ class SmartBoxDemo {
       displayPath = this.currentConfig.dataPath;
     }
 
-    return `&lt;link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/pubCaseFinder/pubcasefinder_tools@main/smartbox/style.css"&gt;
+    return `&lt;link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/PubCaseFinder/pubcasefinder_tools@main/smartbox/style.css"&gt;
 
 &lt;smart-box 
   smart-box-id="${this.currentConfig.smartBoxId || 'demo'}"
@@ -496,7 +496,7 @@ class SmartBoxDemo {
   options='${JSON.stringify(options)}'
 &gt;&lt;/smart-box&gt;
 
-&lt;script type="module" src="https://cdn.jsdelivr.net/gh/pubCaseFinder/pubcasefinder_tools@main/smartbox/smartbox.js"&gt;&lt;/script&gt;
+&lt;script type="module" src="https://cdn.jsdelivr.net/gh/PubCaseFinder/pubcasefinder_tools@main/smartbox/smartbox.js"&gt;&lt;/script&gt;
 
 &lt;script type="module"&gt;
   document.addEventListener('selectedSmartBoxLabel', e => console.log(e.detail.smartBoxId, e.detail.labelInfo));
